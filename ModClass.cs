@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UObject = UnityEngine.Object;
 using Satchel;
+using System.Drawing.Printing;
 
 namespace EasySoulRefill
 {
@@ -12,15 +13,7 @@ namespace EasySoulRefill
     {
         internal static EasySoulRefill Instance;
 
-        //public override List<ValueTuple<string, string>> GetPreloadNames()
-        //{
-        //    return new List<ValueTuple<string, string>>
-        //    {
-        //        new ValueTuple<string, string>("White_Palace_18", "White Palace Fly")
-        //    };
-        //}
-
-        public override string GetVersion() => "v0.1.0.6";
+        public override string GetVersion() => "v0.1.1.0";
 
         public EasySoulRefill() : base("FullSoulRespawn")
         {
@@ -29,38 +22,17 @@ namespace EasySoulRefill
 
         public override void Initialize(Dictionary<string, Dictionary<string, GameObject>> preloadedObjects)
         {
-            //On.GameManager.OnNextLevelReady += OnSceneLoad;
-            On.HeroController.Update += OnHeroUpdate;
-            On.HeroController.Respawn += OnRespawn;
+            ModHooks.SetPlayerBoolHook += OnSetBool;
         }
 
-        public IEnumerator OnRespawn(On.HeroController.orig_Respawn orig, global::HeroController self)
+        public bool OnSetBool(string name, bool orig)
         {
-            IEnumerator ienum = orig(self);
-            Log("Respawned");
-            Satchel.CoroutineHelper.WaitForSecondsBeforeInvoke(0.5f, RefillSoul);
-
-            return ienum;
-        }
-
-        /*public void OnSceneLoad(On.GameManager.orig_OnNextLevelReady orig, global::GameManager self)
-        {
-            orig(self);
-            Log("Scene Loaded");
-            if (PlayerData.instance.atBench)
+            if ((name == "atBench") && orig)
             {
-                Log("At Bench");
+                Log("Benched");
                 RefillSoul();
             }
-        }*/
-
-        public void OnHeroUpdate(On.HeroController.orig_Update orig, global::HeroController self)
-        {
-            orig(self);
-            if (Input.GetKeyDown(KeyCode.L))
-            {
-                RefillSoul();
-            }
+            return orig;
         }
 
         public void RefillSoul()
