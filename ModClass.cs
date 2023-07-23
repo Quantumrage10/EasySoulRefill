@@ -13,7 +13,7 @@ namespace EasySoulRefill
     {
         internal static EasySoulRefill Instance;
 
-        public override string GetVersion() => "v1.0.0.0";
+        public override string GetVersion() => "v1.0.0.2";
 
         private string[] dream_boss_scene_names = {
             "Dream_01_False_Knight",
@@ -41,7 +41,7 @@ namespace EasySoulRefill
         {
             if ((name == "atBench") && orig)
             {
-                RefillSoul();
+                Satchel.CoroutineHelper.WaitForSecondsBeforeInvoke(0.5f, RefillSoul);
             }
             return orig;
         }
