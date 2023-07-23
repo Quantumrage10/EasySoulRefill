@@ -13,7 +13,7 @@ namespace EasySoulRefill
     {
         internal static EasySoulRefill Instance;
 
-        public override string GetVersion() => "v0.1.1.3";
+        public override string GetVersion() => "v1.0.0.0";
 
         private string[] dream_boss_scene_names = {
             "Dream_01_False_Knight",
