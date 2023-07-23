@@ -26,7 +26,7 @@ namespace EasySoulRefill
             "hegemol overworld arena",
             "isma overworld"};
 
-        public EasySoulRefill() : base("FullSoulRespawn")
+        public EasySoulRefill() : base("Easy Soul Refill")
         {
             Instance = this;
         }
