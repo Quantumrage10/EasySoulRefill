@@ -5,8 +5,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UObject = UnityEngine.Object;
 using Satchel;
-using System.Drawing.Printing;
-using IL;
 using System.Linq;
 
 namespace EasySoulRefill
