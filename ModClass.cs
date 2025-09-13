@@ -61,6 +61,7 @@ namespace EasySoulRefill
         public void RefillSoul()
         {
             HeroController.instance.AddMPCharge(200);
+            HeroController.instance.TakeReserveMP(0);
         }
     }
 }
