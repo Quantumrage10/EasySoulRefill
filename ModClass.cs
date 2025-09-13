@@ -24,7 +24,9 @@ namespace EasySoulRefill
             "dryya overworld",
             "zemer overworld arena",
             "hegemol overworld arena",
-            "isma overworld"};
+            "isma overworld",
+            "Grimm_Nightmare"
+            };
 
         public EasySoulRefill() : base("Easy Soul Refill")
         {
